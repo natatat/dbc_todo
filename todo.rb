@@ -1,4 +1,3 @@
-
 # What classes do you need?
 
 # Remember, there are four high-level responsibilities, each of which have multiple sub-responsibilities:
