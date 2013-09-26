@@ -11,7 +11,7 @@
 
 require 'csv'
 
-class Todo
+class TodoModel
 
   def initialize(file_name)
     @file_name = file_name
@@ -32,12 +32,6 @@ class Todo
     save
   end
 
-  def list
-    @todo_items.each_with_index do |element, index|
-      puts "#{index+1}: #{element.join(" ")}"
-    end
-  end
-
   def delete(item_id)
     @todo_items.delete_at(item_id.join.to_i-1)
     save
@@ -45,9 +39,13 @@ class Todo
 
   def complete(item_id)
     @todo_items[item_id.join.to_i-1][0] += " (COMPLETE!)"
-    # @completed_task = @todo_items[item_id.join.to_i-1][0] + "(COMPLETE!)"
-
     save
+  end
+
+  def list
+    @todo_items.each_with_index do |element, index|
+      puts "#{index+1}: #{element.join(" ")}"
+    end
   end
 
   def save

@@ -2,12 +2,12 @@ require 'csv'
 
 require_relative 'todo'
 
-class TodoInterface
+class TodoController
 
-  def initialize
-    @command = ARGV[0]
-    @task_id = ARGV[1..-1]
-    @todo_list = Todo.new('todo.csv')
+  def initialize(arguments)
+    @command = arguments[:command]
+    @task_id = arguments[:task_id]
+    @todo_list = arguments[:new_list]
   end
 
   def run!
@@ -20,8 +20,6 @@ class TodoInterface
         @todo_list.delete(@task_id)
       when "complete"
         @todo_list.complete(@task_id)
-      # when "save"
-      #   @todo_list.save
       else
         puts "Please input list, delete, complete, save"
         @command = gets.chomp
@@ -31,5 +29,4 @@ class TodoInterface
 
 end
 
-
-TodoInterface.new.run!
+TodoController.new(:command => ARGV[0], :task_id => ARGV[1..-1], :new_list => TodoModel.new('todo.csv')).run!
