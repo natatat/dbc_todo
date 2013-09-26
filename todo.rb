@@ -26,7 +26,9 @@ class Todo
   end
 
   def add(todo_item)
-    @todo_items << todo_item
+    todo_item_condensed = []
+    todo_item_condensed << todo_item.join(" ")
+    @todo_items << todo_item_condensed
     save
   end
 
@@ -42,7 +44,9 @@ class Todo
   end
 
   def complete(item_id)
-    @todo_items[item_id-1][0] += " - COMPLETE!"
+    @todo_items[item_id.join.to_i-1][0] += " (COMPLETE!)"
+    # @completed_task = @todo_items[item_id.join.to_i-1][0] + "(COMPLETE!)"
+
     save
   end
 
