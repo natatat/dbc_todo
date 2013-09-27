@@ -14,7 +14,11 @@ class TodoModel
   def initialize(file_name)
     @file_name = file_name
     @todo_items = []
-    parse
+    # parse
+  end
+
+  def create_new_list
+    @file_name = File.new(@file_name, "w+")
   end
 
   def parse
@@ -31,7 +35,7 @@ class TodoModel
   def delete(item_id)
     @todo_items.delete_at(item_id.join.to_i-1)
     # Re-numbers the list after deleted item fucks it up.
-    @todo_items.each_with_index do |item,index|
+    @togdo_items.each_with_index do |item,index|
       unless item.start_with?((index+1).to_s)
         item.gsub!(/^\d*/, (index+1).to_s)
       end
@@ -41,6 +45,11 @@ class TodoModel
 
   def complete(item_id)
     @todo_items[item_id.join.to_i-1].gsub!(/\[.*\]/, "[X]")
+    save
+  end
+
+  def uncomplete(item_id)
+    @todo_items[item_id.join.to_i-1].gsub!(/\[.*\]/, "[ ]")
     save
   end
 
