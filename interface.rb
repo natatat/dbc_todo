@@ -1,5 +1,3 @@
-require 'csv'
-
 require_relative 'todo'
 
 class TodoController
@@ -29,4 +27,4 @@ class TodoController
 
 end
 
-TodoController.new(:command => ARGV[0], :task_id => ARGV[1..-1], :new_list => TodoModel.new('todo.csv')).run!
+TodoController.new(:command => ARGV[0], :task_id => ARGV[1..-1], :new_list => TodoModel.new('todo.txt')).run!
