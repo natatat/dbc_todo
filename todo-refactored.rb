@@ -58,37 +58,3 @@ end
 
 TodoController.new(:command => ARGV[1], :task_id => ARGV[2..-1], :todo_list => TodoModel.new(ARGV[0]), :todo_viewer => TodoViewer.new).run!
 
-
-
-# class Task
-#   def initialize(task)
-#     @completed = false
-#     @task = task
-#   end
-
-#   def complete
-#     @completed = true
-#   end
-# end
-
-
-
-# class List
-#   attr_reader :title
-
-#   def initialize(args)
-#     @list_items = []
-#     @title = args[:title]
-#     @birthday = Time.now
-#   end
-
-
-#   def add_task
-#     @list_items << Task.new
-
-
-# end
-
-
-# my_list = List.new({:title => "My to do list"})
-# p my_list.title
